@@ -61,7 +61,7 @@ public class MaxTemperatureMapper extends
 		int 	month 	= getMonth(line);		
 		int	temp	= getTemp(line);
 		int quality 	= getQuality(line);
-		if(year != 1901) {
+		if(year < 1900 || year > 2000) {
 			System.out.println("Invalid year = " + year);
 			return null;
 		}
