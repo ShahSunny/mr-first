@@ -62,15 +62,15 @@ public class MaxTemperatureMapper extends
 		int	temp	= getTemp(line);
 		int quality 	= getQuality(line);
 		if(year < 1900 || year > 2000) {
-			System.out.println("Invalid year = " + year);
+			//System.out.println("Invalid year = " + year);
 			return null;
 		}
 		if(temp == 9999 || temp == -9999) {
-			System.out.println("Invalid temp" + temp);
+			//System.out.println("Invalid temp" + temp);
 			return null;
 		}
 		if(quality != 0 && quality != 1 && quality != 4 && quality != 5 && quality != 9) {
-			System.out.println("Invalid quality " + quality + " , " + temp);
+			//System.out.println("Invalid quality " + quality + " , " + temp);
 			return null;
 		}				
 		return new Record(year, temp);		

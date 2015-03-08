@@ -31,10 +31,10 @@ public class AppRunner extends Configured implements Tool {
 	@Override
 	public int run(String[] args) throws Exception {
 		logger.debug("In AppRunner::Run");
-		Configuration conf = getConf();
-		conf.set("fs.defaultFS", "file:///");
-		conf.set("mapreduce.framework.name", "local");
-		setConf(conf);
+		//Configuration conf = getConf();
+		//conf.set("fs.defaultFS", "file:///");
+		//conf.set("mapreduce.framework.name", "local");
+		//setConf(conf);
 		Job job = Job.getInstance(getConf());
         job.setJobName("Word Count");
 
@@ -65,7 +65,7 @@ public class AppRunner extends Configured implements Tool {
 				public boolean accept(Path path) {
 					try {
 						FileStatus fileStatus = fs.getFileStatus(path);
-						if(fileStatus.isDirectory() && path.getName().matches("^190.$")) {
+						if(fileStatus.isDirectory() && path.getName().matches("^1981$")) {
 							return true;
 						} 
 					} catch(IOException e) {
