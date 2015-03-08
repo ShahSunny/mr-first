@@ -36,7 +36,7 @@ public class AppRunner extends Configured implements Tool {
         job.setJarByClass(AppRunner.class);
         job.setMapperClass(MaxTemperatureMapper.class);
         job.setReducerClass(MaxTemperatureReducer.class);
-
+        job.setNumReduceTasks(1);
         //setting the output data type classes
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
