@@ -13,7 +13,7 @@ public class MaxTemperatureReducer extends
 			throws IOException, InterruptedException {
 		int maxTemprature = Integer.MIN_VALUE;
 		for(IntWritable value : values) {
-			maxTemprature = Math.max(value, maxTemprature);			
+			maxTemprature = Math.max(value.get(), maxTemprature);			
 		}
 		context.write(key,new IntWritable(maxTemprature));
 	}
