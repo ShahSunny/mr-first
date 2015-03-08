@@ -11,12 +11,12 @@ import org.apache.hadoop.mapreduce.Mapper;
 import com.google.common.collect.Multiset.Entry;
 
 public class MaxTemperatureMapper extends
-		Mapper<LongWritable, Text, Text, IntWritable> {
+		Mapper<LongWritable, Text, IntWritable, IntWritable> {
 	public static class Record {
-		public String yearMonth;
+		public int year;
 		public int temp;
-		public Record(String yearMonth, int temp) {
-			this.yearMonth = yearMonth;
+		public Record(int year, int temp) {
+			this.year = year;
 			this.temp = temp;
 		}
 	}
@@ -58,7 +58,7 @@ public class MaxTemperatureMapper extends
 	}
 	static Record processWeatherRecord(String line) {
 		int 	year 	= getYear(line);
-		int 	month 	= getMonth(line);		
+		//int 	month 	= getMonth(line);		
 		int	temp	= getTemp(line);
 		int quality 	= getQuality(line);
 		if(year < 1900 || year > 2000) {
@@ -72,9 +72,8 @@ public class MaxTemperatureMapper extends
 		if(quality != 0 && quality != 1 && quality != 4 && quality != 5 && quality != 9) {
 			System.out.println("Invalid quality " + quality + " , " + temp);
 			return null;
-		}
-		String yearMonth = year + "," + month;		
-		return new Record(yearMonth, temp);		
+		}				
+		return new Record(year, temp);		
 	}
 	@Override
 	public void map(LongWritable key, Text value, Context context)
@@ -83,7 +82,7 @@ public class MaxTemperatureMapper extends
 	    String line = value.toString();
 	    Record r = processWeatherRecord(line);
 	    if(r != null) {
-	    	context.write(new Text(r.yearMonth), new IntWritable(r.temp));
+	    	context.write(new IntWritable(r.year), new IntWritable(r.temp));
 	    }
 	  }
 }

@@ -6,10 +6,10 @@ import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Reducer;
 
 public class MaxTemperatureReducer extends
-		Reducer<Text, IntWritable, Text, IntWritable> {
+		Reducer<IntWritable, IntWritable, IntWritable, IntWritable> {
 	@Override
-	protected void reduce(Text key, Iterable<IntWritable> values,
-			Reducer<Text, IntWritable, Text, IntWritable>.Context context)
+	protected void reduce(IntWritable key, Iterable<IntWritable> values,
+			Reducer<IntWritable, IntWritable, IntWritable, IntWritable>.Context context)
 			throws IOException, InterruptedException {
 		int maxTemprature = Integer.MIN_VALUE;
 		for(IntWritable value : values) {
