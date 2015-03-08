@@ -82,6 +82,8 @@ public class MaxTemperatureMapper extends
 	    
 	    String line = value.toString();
 	    Record r = processWeatherRecord(line);
-	    context.write(new Text(r.yearMonth), new IntWritable(r.temp));
+	    if(r != null) {
+	    	context.write(new Text(r.yearMonth), new IntWritable(r.temp));
+	    }
 	  }
 }
