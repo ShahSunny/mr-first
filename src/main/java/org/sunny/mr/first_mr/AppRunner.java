@@ -10,7 +10,7 @@ import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.PathFilter;
 import org.apache.hadoop.io.*;
-import org.apache.hadoop.mapred.lib.CombineTextInputFormat;
+//import org.apache.hadoop.mapred.lib.CombineTextInputFormat;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -48,7 +48,7 @@ public class AppRunner extends Configured implements Tool {
         //setting the output data type classes
         job.setOutputKeyClass(IntWritable.class);
         job.setOutputValueClass(IntWritable.class);
-        job.setInputFormatClass(CombineTextInputFormat.class);
+        //job.setInputFormatClass(CombineTextInputFormat.class);
         Path[] paths = filterOutPaths(args[0]);
         //to accept the hdfs input and outpur dir at run time        
         FileInputFormat.setInputPaths(job, paths);
